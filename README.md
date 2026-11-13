@@ -53,9 +53,22 @@ Authentication uses **JWT**. Read endpoints are public; all write endpoints requ
 - **Language and framework:** Java 17, Spring Boot, Spring Security, Spring Data JPA, Hibernate
 - **Auth:** JWT
 - **Database:** MySQL (AWS RDS in higher environments)
+- **Testing:** JUnit, Mockito
 - **Build:** Maven
 - **Cloud and CI/CD:** AWS Elastic Beanstalk, AWS RDS, GitHub Actions
 - **AI:** Groq LLM API, Model Context Protocol (MCP)
+
+## Testing
+
+Unit tests are written with **JUnit** and **Mockito** and live in the [Product Catalog Service](https://github.com/abhijeet-00/ProductCatalogService) repo. Tests for the User Authentication Service are in progress.
+
+Run the unit tests with:
+
+```bash
+mvn -q test -Dtest='GroqPitchServiceTests,ProductInventoryServiceTests,DummyProductServiceTests,CategoryServiceTests'
+```
+
+Integration tests need a dedicated test database and will be added later.
 
 ## Deployment
 
@@ -67,7 +80,7 @@ Built with an AI-assisted workflow using **GitHub Copilot** and **OpenCode** for
 
 ## Status
 
-In progress: adding unit and integration tests, Docker and Kafka-based messaging.
+In progress: unit tests for the User Authentication Service, integration tests, Docker and Kafka-based messaging.
 
 ## Author
 
