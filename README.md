@@ -60,9 +60,15 @@ Authentication uses **JWT**. Read endpoints are public; all write endpoints requ
 
 ## Testing
 
-Unit tests are written with **JUnit** and **Mockito** and live in the [Product Catalog Service](https://github.com/abhijeet-00/ProductCatalogService) repo. Tests for the User Authentication Service are in progress.
+Unit tests are written with **JUnit** and **Mockito** in both the User Authentication Service and the Product Catalog Service, and run as a step after the build in each service's pipeline.
 
-Run the unit tests with:
+**User Authentication Service**
+
+```bash
+mvn -B test -Dtest=BcryptAuthServiceTests,JwtServiceTests -Dsurefire.failIfNoSpecifiedTests=false --file pom.xml
+```
+
+**Product Catalog Service**
 
 ```bash
 mvn -q test -Dtest='GroqPitchServiceTests,ProductInventoryServiceTests,DummyProductServiceTests,CategoryServiceTests'
@@ -72,7 +78,7 @@ Integration tests need a dedicated test database and will be added later.
 
 ## Deployment
 
-Both services are deployed on **AWS Elastic Beanstalk**, using **RDS MySQL** in higher environments. **GitHub Actions** builds and deploys automatically on every push to **main** branch.
+Both services are deployed on **AWS Elastic Beanstalk**, using **RDS MySQL** in higher environments. **GitHub Actions** builds, runs the unit tests and deploys automatically on every push to **main** branch.
 
 ## Development Approach
 
@@ -80,7 +86,7 @@ Built with an AI-assisted workflow using **GitHub Copilot** and **OpenCode** for
 
 ## Status
 
-In progress: unit tests for the User Authentication Service, integration tests, Docker and Kafka-based messaging.
+In progress: integration tests for both services, Docker and Kafka-based messaging.
 
 ## Author
 
